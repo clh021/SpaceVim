@@ -205,8 +205,13 @@ SpaceVim 根据需要定义了很多临时快捷键，
 
 **通过 git 进行更新**
 
-可通过在 SpaceVim 目录中手动执行 `git pull`，SpaceVim 在 Windows 下的默认目录为 `~/vimfilers`, 但在 Linux 下则可使用如下命令：
-`git -C ~/.SpaceVim pull`
+可通过在 SpaceVim 目录中手动执行 `git pull`，
+SpaceVim 默认安装的位置为 `~/.SpaceVim`,
+因此可以再命令行使用如下命令进行手动更新：
+
+```
+git -C ~/.SpaceVim pull
+```
 
 ### 更新插件
 
@@ -227,7 +232,8 @@ SpaceVim 根据需要定义了很多临时快捷键，
 
 ### 获取日志
 
-使用 `:SPDebugInfo!` 这一命令可以获取 SpaceVim 运行时日志，同时，可以使用 `SPC h I` 使用打开问题模板。
+使用 `:SPDebugInfo!` 这一命令可以获取 SpaceVim 运行时日志，
+同时，可以使用 `SPC h I` 使用打开问题模板。
 可在这个模板中编辑问题，并提交。
 
 ## 用户配置
@@ -262,9 +268,22 @@ SpaceVim 根据需要定义了很多临时快捷键，
 
 ```toml
 [[custom_plugins]]
-    repo = "lilydjwg/colorizer"
-    on_cmd = ["ColorHighlight", "ColorToggle"]
+    repo = 'lilydjwg/colorizer'
+    # `on_cmd` option means this plugin will be loaded
+    # only when the specific commands are called.
+    # for example, when `:ColorHighlight` or `:ColorToggle`
+    # commands are called.
+    on_cmd = ['ColorHighlight', 'ColorToggle']
+    # `on_func` option means this plugin will be loaded
+    # only when the specific functions are called.
+    # for example, when `colorizer#ColorToggle()` function is called.
+    on_func = 'colorizer#ColorToggle'
+    # `merged` option is used for merging plugins directory.
+    # When `merged` is `true`, all files in this custom plugin
+    # will be merged into `~/.cache/vimfiles/.cache/init.vim/`
+    # for neovim or `~/.cache/vimfiles/.cache/vimrc/` for vim.
     merged = false
+    # For more options see `:h dein-options`.
 ```
 
 也可以使用仓库克隆的地址，比如：
@@ -287,6 +306,18 @@ SpaceVim 根据需要定义了很多临时快捷键，
 
 除了 `on_cmd` 以外，还有一些其它的选项，可以通过
 `:h dein-options` 查阅。
+
+如果需要添加多个自定义插件，可以参考如下设置：
+
+```toml
+[[custom_plugins]]
+    repo = 'lilydjwg/colorizer'
+    merged = false
+
+[[custom_plugins]]
+    repo = 'joshdick/onedark.vim'
+    merged = false
+```
 
 **禁用插件**
 
@@ -422,6 +453,7 @@ SpaceVim 的[模块首页](../layers/)。
 - `SpaceVim#layers#autocomplete#plugins()`: 返回该模块插件列表
 - `SpaceVim#layers#autocomplete#config()`: 模块相关设置
 - `SpaceVim#layers#autocomplete#set_variable()`: 模块选项设置函数
+- `SpaceVim#layers#autocomplete#get_options()`: 返回模块选项列表
 
 ### 调试上游插件
 
@@ -1345,7 +1377,7 @@ SpaceVim 选项 `window_leader` 的值来设为其它按键：
 | `SPC f f`            | 在当前文件所在文件夹搜索文件                           |
 | `SPC f F`            | 在当前文件所在的文件夹搜索光标下的文件                 |
 | `SPC f o`            | 代开文件树，并定位到当前文件                           |
-| `SPC f R`            | rename the current file(TODO)                          |
+| `SPC f R`            | 重命名当前文件                                         |
 | `SPC f s` / `Ctrl-s` | 保存文件 (:w)                                          |
 | `SPC f a`            | 另存为新的文件                                         |
 | `SPC f W`            | 使用管理员模式保存                                     |

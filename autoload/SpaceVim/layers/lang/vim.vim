@@ -99,6 +99,7 @@ function! SpaceVim#layers#lang#vim#config() abort
     augroup spacevim_layer_lang_vim
       autocmd!
       autocmd BufWritePost *.vim call s:generate_doc()
+      autocmd FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",:\"
     augroup END
   endif
   " if the lsp layer is enabled, we should disable default linter
@@ -108,7 +109,7 @@ function! SpaceVim#layers#lang#vim#config() abort
 endfunction
 
 function! s:on_exit(...) abort
-  let data = get(a:000, 2)
+  let data = get(a:000, 1)
   if data != 0
     call s:NOTI.notify('failed to generate doc!', 'WarningMsg')
   else
