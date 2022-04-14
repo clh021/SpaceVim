@@ -73,6 +73,7 @@ description: "General documentation about how to use SpaceVim, including the qui
     - [Commands starting with `z`](#commands-starting-with-z)
 - [Advanced usage](#advanced-usage)
   - [Managing projects](#managing-projects)
+    - [Show project info on cmdline](#show-project-info-on-cmdline)
     - [Searching files in project](#searching-files-in-project)
     - [Custom alternate file](#custom-alternate-file)
   - [Bookmarks management](#bookmarks-management)
@@ -1955,6 +1956,10 @@ Project manager commands start with `p`:
 | ------------ | ----------------------------------------------------- |
 | `SPC p '`    | open a shell in project’s root (need the shell layer) |
 
+#### Show project info on cmdline
+
+By default the key binding `Ctrl-g` will display the information of current project on command line.
+
 #### Searching files in project
 
 | Key Bindings         | Descriptions                             |
@@ -2226,9 +2231,16 @@ With the above configuration, you will see the following tasks in the SpaceVim r
 ### Todo manager
 
 The todo manager plugin will run `rg` asynchronously, the results will be displayed on todo manager windows.
-The key binding is `SPC a o`.
+The key binding is `SPC a o`. The default `todo_prefix` option is `@`,
+and the `todo_labels` is: `['fixme', 'question', 'todo', 'idea']`.
 
-The default tags is: `'@fixme', '@question', '@todo', '@idea'`.
+Example:
+
+```
+[options]
+   todo_labels = ['fixme', 'question', 'todo', 'idea']
+   todo_prefix = '@'
+```
 
 ![todo manager](https://user-images.githubusercontent.com/13142418/61462920-0bd9d000-a9a6-11e9-8e1f-c70d6ec6ca1e.png)
 

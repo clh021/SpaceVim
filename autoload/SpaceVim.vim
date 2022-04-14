@@ -350,6 +350,8 @@ if (has('python3')
   " <
   "
   " and you can alse set this option to coc, then coc.nvim will be used.
+  " If you are using neovim, you can also set this option to `nvim-cmp`, then
+  " nvim-cmp will be used.
 
   ""
   " Set the autocomplete engine of spacevim, the default logic is:
@@ -1208,7 +1210,15 @@ let g:spacevim_commandline_prompt = '>'
 
 ""
 " Option for setting todo labels in current project.
-let g:spacevim_todo_labels = map(['fixme', 'question', 'todo', 'idea'], '"@" . v:val')
+let g:spacevim_todo_labels = ['fixme', 'question', 'todo', 'idea']
+
+""
+" @section todo_prefix, options-todo_prefix
+" @parentsection options
+" Option for setting todo prefix in current project.
+" The default is `@`
+
+let g:spacevim_todo_prefix = '@'
 
 ""
 " @section lint_on_the_fly, options-lint_on_the_fly
@@ -1378,8 +1388,8 @@ endif
 " }}}
 
 
-command -nargs=1 LeaderGuide call SpaceVim#mapping#guide#start_by_prefix('0', <args>)
-command -range -nargs=1 LeaderGuideVisual call SpaceVim#mapping#guide#start_by_prefix('1', <args>)
+command! -nargs=1 LeaderGuide call SpaceVim#mapping#guide#start_by_prefix('0', <args>)
+command! -range -nargs=1 LeaderGuideVisual call SpaceVim#mapping#guide#start_by_prefix('1', <args>)
 
 function! SpaceVim#end() abort
   if g:spacevim_vimcompatible
@@ -1547,11 +1557,14 @@ endfunction
 " status: 0 : no argv
 "         1 : dir
 "         2 : default arguments
+"
+" argc() return number of files
+" argv() return a list of files/directories
 function! s:parser_argv() abort
   if  !exists('v:argv')
         \ || (len(v:argv) >=# 3 && index(v:argv, '--embed') ==# -1)
     " or do not support v:argv
-    return [2, get(v:, 'argv', ['failed to get v:argv'])]
+    return [0, get(v:, 'argv', ['failed to get v:argv'])]
   elseif len(v:argv) ==# 1 || index(v:argv, '--embed') !=# -1
     " if there is no arguments
     " or use embed nvim
@@ -1890,7 +1903,24 @@ endfunction
 "
 " The footer is optional and is used to reference issue tracker IDs.
 
-
+""
+" @section alternate file, usage-alternate-file
+" @parentsection usage
+" SpaceVim provides a built-in alternate file manager, the command is `:A`.
+"
+" To use this feature, you can create a `.project_alt.json` file in the root
+" of your project. for example:
+" >
+"    {
+"      "autoload/SpaceVim/layers/lang/*.vim" :
+"          {
+"             "doc" : "docs/layers/lang/{}.md"
+"          },
+"    }
+" <
+" after adding this configuration, when edit the source file 
+" `autoload/SpaceVim/layers/lang/java.vim`,
+" you can use `:A doc` switch to `docs/layers/lang/java.md`
 
 ""
 " @section FAQ, faq

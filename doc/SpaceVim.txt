@@ -79,14 +79,15 @@ CONTENTS                                                   *SpaceVim-contents*
       58. statusline_unicode.............|SpaceVim-options-statusline_unicode|
       59. terminal_cursor_shape.......|SpaceVim-options-terminal_cursor_shape|
       60. todo_labels...........................|SpaceVim-options-todo_labels|
-      61. vim_help_language...............|SpaceVim-options-vim_help_language|
-      62. vimcompatible.......................|SpaceVim-options-vimcompatible|
-      63. warning_symbol.....................|SpaceVim-options-warning_symbol|
-      64. wildignore.............................|SpaceVim-options-wildignore|
-      65. windisk_encoding.................|SpaceVim-options-windisk_encoding|
-      66. windows_index_type.............|SpaceVim-options-windows_index_type|
-      67. windows_leader.....................|SpaceVim-options-windows_leader|
-      68. windows_smartclose.............|SpaceVim-options-windows_smartclose|
+      61. todo_prefix...........................|SpaceVim-options-todo_prefix|
+      62. vim_help_language...............|SpaceVim-options-vim_help_language|
+      63. vimcompatible.......................|SpaceVim-options-vimcompatible|
+      64. warning_symbol.....................|SpaceVim-options-warning_symbol|
+      65. wildignore.............................|SpaceVim-options-wildignore|
+      66. windisk_encoding.................|SpaceVim-options-windisk_encoding|
+      67. windows_index_type.............|SpaceVim-options-windows_index_type|
+      68. windows_leader.....................|SpaceVim-options-windows_leader|
+      69. windows_smartclose.............|SpaceVim-options-windows_smartclose|
   3. Configuration...........................................|SpaceVim-config|
   4. Commands..............................................|SpaceVim-commands|
   5. Public functions.....................................|SpaceVim-functions|
@@ -224,14 +225,15 @@ CONTENTS                                                   *SpaceVim-contents*
       131. ui.............................................|SpaceVim-layers-ui|
       132. unite.......................................|SpaceVim-layers-unite|
   7. Usage....................................................|SpaceVim-usage|
-      1. buffers-and-files..................|SpaceVim-usage-buffers-and-files|
-      2. command-line-mode..................|SpaceVim-usage-command-line-mode|
-      3. custom_plugins........................|SpaceVim-usage-custom_plugins|
-      4. repl............................................|SpaceVim-usage-repl|
-      5. search-and-replace................|SpaceVim-usage-search-and-replace|
-      6. tasks..........................................|SpaceVim-usage-tasks|
-      7. undo-tree...................................|SpaceVim-usage-undotree|
-      8. windows-and-tabs....................|SpaceVim-usage-windows-and-tabs|
+      1. alternate file........................|SpaceVim-usage-alternate-file|
+      2. buffers-and-files..................|SpaceVim-usage-buffers-and-files|
+      3. command-line-mode..................|SpaceVim-usage-command-line-mode|
+      4. custom_plugins........................|SpaceVim-usage-custom_plugins|
+      5. repl............................................|SpaceVim-usage-repl|
+      6. search-and-replace................|SpaceVim-usage-search-and-replace|
+      7. tasks..........................................|SpaceVim-usage-tasks|
+      8. undo-tree...................................|SpaceVim-usage-undotree|
+      9. windows-and-tabs....................|SpaceVim-usage-windows-and-tabs|
   8. Plugins................................................|SpaceVim-plugins|
       1. iedit........................................|SpaceVim-plugins-iedit|
       2. runner......................................|SpaceVim-plugins-runner|
@@ -245,17 +247,18 @@ CONTENTS                                                   *SpaceVim-contents*
       6. data#string................................|SpaceVim-api-data-string|
       7. job................................................|SpaceVim-api-job|
       8. logger..........................................|SpaceVim-api-logger|
-      9. password......................................|SpaceVim-api-password|
-      10. prompt.........................................|SpaceVim-api-prompt|
-      11. sid...........................................|SpaceVim-api-vim-sid|
-      12. system.........................................|SpaceVim-api-system|
-      13. time.............................................|SpaceVim-api-time|
-      14. unicode#box...............................|SpaceVim-api-unicode-box|
-      15. vim#buffer.................................|SpaceVim-api-vim-buffer|
-      16. vim#command...............................|SpaceVim-api-vim-command|
-      17. vim#compatible.........................|SpaceVim-api-vim-compatible|
-      18. vim#message...............................|SpaceVim-api-vim-message|
-      19. vim#window.................................|SpaceVim-api-vim-window|
+      9. notify..........................................|SpaceVim-api-notify|
+      10. password.....................................|SpaceVim-api-password|
+      11. prompt.........................................|SpaceVim-api-prompt|
+      12. sid...........................................|SpaceVim-api-vim-sid|
+      13. system.........................................|SpaceVim-api-system|
+      14. time.............................................|SpaceVim-api-time|
+      15. unicode#box...............................|SpaceVim-api-unicode-box|
+      16. vim#buffer.................................|SpaceVim-api-vim-buffer|
+      17. vim#command...............................|SpaceVim-api-vim-command|
+      18. vim#compatible.........................|SpaceVim-api-vim-compatible|
+      19. vim#message...............................|SpaceVim-api-vim-message|
+      20. vim#window.................................|SpaceVim-api-vim-window|
   10. Development...............................................|SpaceVim-dev|
       1. commit-style-guide..................|SpaceVim-dev-commit-style-guide|
   11. FAQ.......................................................|SpaceVim-faq|
@@ -303,7 +306,9 @@ Set the autocomplete engine of spacevim, the default logic is:
   endif
 <
 
-and you can alse set this option to coc, then coc.nvim will be used.
+and you can alse set this option to coc, then coc.nvim will be used. If you
+are using neovim, you can also set this option to `nvim-cmp`, then nvim-cmp
+will be used.
 
 ==============================================================================
 AUTOCOMPLETE_PARENS                     *SpaceVim-options-autocomplete_parens*
@@ -836,6 +841,11 @@ the following to ~/.tmux.conf:
 TODO_LABELS                                     *SpaceVim-options-todo_labels*
 
 Option for setting todo labels in current project.
+
+==============================================================================
+TODO_PREFIX                                     *SpaceVim-options-todo_prefix*
+
+Option for setting todo prefix in current project. The default is `@`
 
 ==============================================================================
 VIM_HELP_LANGUAGE                         *SpaceVim-options-vim_help_language*
@@ -2074,6 +2084,16 @@ MAPPINGS
   normal    SPC g h p     show PRs in browser
 <
 
+NOTE: If you are using python2, you may get error:
+>
+   No module named past.builtins
+<
+
+To fix this issue, you need to install `future` module.
+>
+  python2 -m pip install future
+<
+
 ==============================================================================
 GTAGS                                                  *SpaceVim-layers-gtags*
 
@@ -2846,6 +2866,31 @@ development. This layer is not enabled by default, to enable it:
 LAYER OPTIONS
   1. `enabled_linters`: set a list of enabled lint for golang. by default this
 option is `['golint']`. The available linters includes: `go`, `gometalinter`
+  2. go_file_head: the default file head for golang source code.
+
+>
+  [layers]
+    name = "lang#go"
+    go_file_head = [
+      '#!/usr/bin/python3',
+      '# -*- coding : utf-8 -*-'
+      ''
+    ]
+<
+  3. `go_interpreter`: Set the interpreter of go.
+
+>
+  [[layers]]
+    name = 'lang#go'
+    go_interpreter = '~/download/bin/go'
+<
+  4. format_on_save: enable/disable code formation when save go file. This
+options is disabled by default, to enable it:
+>
+  [[layers]]
+    name = 'lang#go'
+    format_on_save = true
+<
 
 MAPPINGS
 
@@ -3901,9 +3946,10 @@ LAYER OPTIONS
 KEY BINDINGS
 
 >
-  Mode            Key             Function
-  ---------------------------------------------
-  normal          SPC l r         run current file
+  Key             Function
+  --------------------------------
+  SPC l r         run current file
+  g d             jump to definition
 <
 
 This layer also provides REPL support for php, the key bindings are:
@@ -3914,6 +3960,21 @@ This layer also provides REPL support for php, the key bindings are:
   SPC l s b       send whole buffer
   SPC l s l       send current line
   SPC l s s       send selection text
+<
+
+If the lsp layer is enabled for php, the following key bindings can be used:
+>
+  key binding     Description
+  --------------------------------
+  g D             jump to declaration
+  SPC l e         rename symbol
+  SPC l x         show references
+  SPC l h         show line diagnostics
+  SPC l d         show document
+  K               show document
+  SPC l w l       list workspace folder
+  SPC l w a       add workspace folder
+  SPC l w r       remove workspace folder
 <
 
 
@@ -5340,6 +5401,25 @@ USAGE                                                         *SpaceVim-usage*
 function.
 
 ==============================================================================
+ALTERNATE FILE                                 *SpaceVim-usage-alternate-file*
+
+SpaceVim provides a built-in alternate file manager, the command is `:A`.
+
+To use this feature, you can create a `.project_alt.json` file in the root of
+your project. for example:
+>
+   {
+     "autoload/SpaceVim/layers/lang/*.vim" :
+         {
+            "doc" : "docs/layers/lang/{}.md"
+         },
+   }
+<
+after adding this configuration, when edit the source file
+`autoload/SpaceVim/layers/lang/java.vim`, you can use `:A doc` switch to
+`docs/layers/lang/java.md`
+
+==============================================================================
 BUFFERS-AND-FILES                           *SpaceVim-usage-buffers-and-files*
 
 BUFFERS MANIPULATION KEY BINDINGS
@@ -5753,6 +5833,24 @@ set_silent({silent})
 
   {silent} is a Boolean. by default it is false, and log will be print to
 screen.
+
+==============================================================================
+NOTIFY                                                   *SpaceVim-api-notify*
+
+The notification api for SpaceVim
+
+notify({msg} [, {Color}[, {option}]])
+
+Use floating windows to display notification {msg}. The {msg} should a no
+empty string. {Color} is the name of highlight ground defined in Vim. The
+{option} is a dictionary which support following key:
+
+`winblend`: enable transparency for the notify windows. Valid values are in
+  the range of 0 to 100. Default is 0.
+
+NOTE: Floating windows support pseudo-transparency (:help 'winblend') in
+#neovim HEAD (v0.4.x).
+
 
 ==============================================================================
 PASSWORD                                               *SpaceVim-api-password*
