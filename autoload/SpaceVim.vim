@@ -570,11 +570,11 @@ let g:spacevim_enable_statusline_bfpath = 0
 " Enable/Disable showing current tag on statusline
 let g:spacevim_enable_statusline_tag = 1
 ""
-" @section statusline_left_sections, options-statusline_left_sections
+" @section statusline_left, options-statusline_left
 " @parentsection options
 " Define the left section of statusline in active windows. By default:
 " >
-"   statusline_left_sections = [
+"   statusline_left = [
 "     'winnr',
 "     'filename',
 "     'major mode',
@@ -582,11 +582,12 @@ let g:spacevim_enable_statusline_tag = 1
 "     'version control info'
 "     ]
 " <
+" `statusline_left_sections` is deprecated, use `statusline_left` instead. 
 
 ""
 " Define the left section of statusline in active windows. By default:
 " >
-"   let g:spacevim_statusline_left_sections =
+"   let g:spacevim_statusline_left =
 "     \ [
 "     \ 'winnr',
 "     \ 'filename',
@@ -595,16 +596,18 @@ let g:spacevim_enable_statusline_tag = 1
 "     \ 'version control info'
 "     \ ]
 " <
-let g:spacevim_statusline_left_sections = ['winnr', 'filename', 'major mode',
+" `g:spacevim_statusline_left_sections` is deprecated,
+" use `g:spacevim_statusline_left` instead. 
+let g:spacevim_statusline_left = ['winnr', 'filename', 'major mode',
       \ 'search count',
       \ 'syntax checking', 'minor mode lighters',
       \ ]
 ""
-" @section statusline_right_sections, options-statusline_right_sections
+" @section statusline_right, options-statusline_right
 " @parentsection options
 " Define the right section of statusline in active windows. By default:
 " >
-"   statusline_right_sections = [
+"   statusline_right = [
 "     'fileformat',
 "     'cursorpos',
 "     'percentage'
@@ -616,18 +619,23 @@ let g:spacevim_statusline_left_sections = ['winnr', 'filename', 'major mode',
 " - cursorpos: the corsur position
 " - percentage: the percent of current page
 " - totallines: the total lines of current buffer
+"
+" `statusline_right_sections` is deprecated, use `statusline_right` instead. 
 
 ""
 " Define the right section of statusline in active windows. By default:
 " >
-"   g:spacevim_statusline_right_sections =
+"   g:spacevim_statusline_right =
 "     \ [
 "     \ 'fileformat',
 "     \ 'cursorpos',
 "     \ 'percentage'
 "     \ ]
 " <
-let g:spacevim_statusline_right_sections = ['fileformat', 'cursorpos', 'percentage']
+"
+" `g:spacevim_statusline_right_sections` is deprecated,
+" use `g:spacevim_statusline_right` instead. 
+let g:spacevim_statusline_right = ['fileformat', 'cursorpos', 'percentage']
 
 ""
 " @section statusline_unicode, options-statusline_unicode
@@ -1813,6 +1821,10 @@ endfunction
 "     files in a given directory | f
 "     current project            | p
 " <
+" Instead of using flygrep to search text. SpaceVim also provides a general
+" async searcher. The key binding is `SPC s j`, an input promote will be
+" opened. After inserting text and press enter. searching results will be
+" displayed in quickfix window.
 
 ""
 " @section buffers-and-files, usage-buffers-and-files
