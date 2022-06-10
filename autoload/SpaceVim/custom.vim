@@ -142,6 +142,7 @@ function! s:apply(config, type) abort
       endif
       exe 'let g:spacevim_' . name . ' = value'
       if name ==# 'project_rooter_patterns'
+            \ || name ==# 'project_rooter_outermost'
         " clear rooter cache
         call SpaceVim#plugins#projectmanager#current_root()
       endif
@@ -218,7 +219,13 @@ function! s:apply(config, type) abort
     let bootstrap_script = get(options, 'bootstrap_script', '')
 
     if !empty(bootstrap_script) && exists('*nvim_exec')
-      call nvim_exec(bootstrap_script, 0)
+      try
+        call nvim_exec(bootstrap_script, 0)
+      catch
+        call SpaceVim#logger#error('failed to execute bootstrap_script.')
+        call SpaceVim#logger#error('       exception: ' . v:exception)
+        call SpaceVim#logger#error('       throwpoint: ' . v:throwpoint)
+      endtry
     endif
 
     if !empty(bootstrap_before)

@@ -8,7 +8,9 @@ In `bundle/` directory, there are two kinds of plugins: forked plugins without c
 - [No changed plugins](#no-changed-plugins)
   - [`lang#ruby` layer](#langruby-layer)
   - [`lang#python` layer](#langpython-layer)
+  - [`lang#liquid` layer](#langliquid-layer)
   - [`tmux` layer](#tmux-layer)
+  - [`incsearch` layer](#incsearch-layer)
 
 <!-- vim-markdown-toc -->
 
@@ -54,6 +56,18 @@ In `bundle/` directory, there are two kinds of plugins: forked plugins without c
 - [alfredodeza/coveragepy.vim@afcef30](https://github.com/alfredodeza/coveragepy.vim/tree/afcef301b723048c25250d2d539b9473a8e4f747)
 - [Vimjas/vim-python-pep8-indent@60ba5e](https://github.com/Vimjas/vim-python-pep8-indent/tree/60ba5e11a61618c0344e2db190210145083c91f8)
 
+#### `lang#liquid` layer
+
+- [tpope/vim-liquid@fd2f001](https://github.com/tpope/vim-liquid/tree/fd2f0017fbc50f214db2f57c207c34cda3aa1522)
+
 #### `tmux` layer
 
 - [christoomey/vim-tmux-navigator@9ca5bfe5b](https://github.com/christoomey/vim-tmux-navigator/tree/9ca5bfe5bd274051b5dd796cc150348afc993b80)
+
+#### `incsearch` layer
+
+- [incsearch.vim@c83de6d1](https://github.com/haya14busa/incsearch.vim/tree/c83de6d1ac31d173d7c3ffee0ad61dc643ee4f08)
+- [incsearch-fuzzy.vim@b08fa8fb](https://github.com/haya14busa/incsearch-fuzzy.vim/tree/b08fa8fbfd633e2f756fde42bfb5251d655f5403)
+- [vim-asterisk@77e9706](https://github.com/haya14busa/vim-asterisk/tree/77e97061d6691637a034258cc415d98670698459)
+- [vim-over@878f83b](https://github.com/osyo-manga/vim-over/tree/878f83bdac0cda308f599d319f45c7877d5274a9)
+- [incsearch-easymotion.vim@fcdd3ae](https://github.com/haya14busa/incsearch-easymotion.vim/tree/fcdd3aee6f4c0eef1a515727199ece8d6c6041b5)
