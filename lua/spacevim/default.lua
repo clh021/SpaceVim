@@ -10,12 +10,14 @@
 local M = {}
 
 local SYSTEM = require('spacevim.api').import('system')
+local logger = require('spacevim.logger')
 local guifont = ''
 local function set_font(font)
     vim.o.guifont = font
 end
 
 function M.options()
+    logger.info('init default vim options')
 
     if vim.fn.has('gui_running') == 1 then
         vim.opt.guioptions:remove(
@@ -88,19 +90,19 @@ function M.options()
     vim.g.conf_dir = vim.g.data_dir .. 'conf'
 
     if vim.fn.finddir(vim.g.data_dir) == '' then
-        pcall(vim.fn.mkdir, vim.g.data_dir, 'p', 0700)
+        pcall(vim.fn.mkdir, vim.g.data_dir, 'p', '0700')
     end
     if vim.fn.finddir(vim.g.backup_dir) == '' then
-        pcall(vim.fn.mkdir, vim.g.backup_dir, 'p', 0700)
+        pcall(vim.fn.mkdir, vim.g.backup_dir, 'p', '0700')
     end
     if vim.fn.finddir(vim.g.swap_dir) == '' then
-        pcall(vim.fn.mkdir, vim.g.swap_dir, 'p', 0700)
+        pcall(vim.fn.mkdir, vim.g.swap_dir, 'p', '0700')
     end
     if vim.fn.finddir(vim.g.undo_dir) == '' then
-        pcall(vim.fn.mkdir, vim.g.undo_dir, 'p', 0700)
+        pcall(vim.fn.mkdir, vim.g.undo_dir, 'p', '0700')
     end
     if vim.fn.finddir(vim.g.conf_dir) == '' then
-        pcall(vim.fn.mkdir, vim.g.conf_dir, 'p', 0700)
+        pcall(vim.fn.mkdir, vim.g.conf_dir, 'p', '0700')
     end
     vim.o.undodir = vim.g.undo_dir
     vim.o.backupdir = vim.g.backup_dir
@@ -148,7 +150,7 @@ function M.options()
 
     vim.o.foldtext = 'SpaceVim#default#Customfoldtext()'
 
-
+    logger.info('options init done')
 end
 
 return M

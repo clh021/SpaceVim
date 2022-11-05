@@ -5,11 +5,15 @@ description: "General contributing guidelines and changelog of SpaceVim, includi
 
 # Development
 
+SpaceVim is a joint effort of all contributors.
+We encourage you to participate in SpaceVim's development.
+This page describes the entire development process of SpaceVim.
+
+We have some guidelines that we need all contributors to follow.
+You can only think about reading the part that is relevant to what you are going to do:
+
 <!-- vim-markdown-toc GFM -->
 
-- [Asking for help](#asking-for-help)
-- [Reporting bugs](#reporting-bugs)
-- [Requesting new feature](#requesting-new-feature)
 - [Contributing code](#contributing-code)
   - [License](#license)
   - [Conventions](#conventions)
@@ -32,86 +36,10 @@ description: "General contributing guidelines and changelog of SpaceVim, includi
 
 <!-- vim-markdown-toc -->
 
-SpaceVim is a joint effort of all contributors.
-We encourage you to participate in SpaceVim's development.
-This page describes the entire development process of SpaceVim.
-
-We have some guidelines that we need all contributors to follow.
-You can only think about reading the part that is relevant to what you are going to do:
-
-- [Asking for help](#asking-for-help): if you are about to open an issue to ask a question.
-- [Requesting new feature](#requesting-new-feature): if you want a new feature.
-- [Reporting bugs](#reporting-bugs): if you run into a bug.
-- [Contributing code](#contributing-code): if you are about to send a pull-request.
-
-## Asking for help
-
-If you have any questions about using SpaceVim,
-check out the following context first, which may contain the answers:
-
-- `:h SpaceVim-faq`: Some of the most frequently asked questions are answered there.
-- [SpaceVim documentation](https://spacevim.org/documentation/): It is the general documentation of SpaceVim.
-
-Besides, you can also [chat with us](../community/#chat)
-
-## Reporting bugs
-
-If you run into a bug, please follow the guidelines below to give feedback.
-
-- Update the SpaceVim to the latest version. And make sure the can be reproduced in latest version of spacevim.
-- Use a clear title with `[bug]` prefix, and follow the `bug reporting` mail template.
-
-```
-## Expected behavior, english is required
-
-## The reproduce ways from Vim starting (Required!)
-
-## Debug info
-
-Please press SPC h I, debug info will be put into clipboard,
-then paste all content below.
-
-## Screenshots
-
-If you have any screenshots, add to mail Attachment.
-```
-
-- send the email to [spacevim@googlegroups.com](mailto:spacevim@googlegroups.com)
-
-## Requesting new feature
-
-If you want a new feature or have an idea to improve spacevim, please follow the guidelines to give feedback.
-
-- Use a clear title with `[feature]` prefix, add follow the `feature request` mail template:
-
-```
-## Is your feature request related to a problem? Please describe.**
-
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
-
-## Describe the solution you'd like.
-
-A clear and concise description of what you want to happen.
-
-## Describe alternatives you've considered.
-
-A clear and concise description of any alternative solutions or features you've considered.
-
-## Additional context
-
-Add any other context about the feature request here.
-
-## Screenshots
-
-If you have any screenshots, add to mail Attachment.
-```
-
-- send the email to [spacevim@googlegroups.com](mailto:spacevim@googlegroups.com)
 
 ## Contributing code
 
-Code and documentation contributions of any kind are welcome.
-Please read the following sections carefully.
+Code and documentation contributions of any kind are welcome. 
 In any case, feel free to [chat with us](../community/#chat) to ask questions about contributing!
 
 ### License

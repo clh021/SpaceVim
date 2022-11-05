@@ -79,8 +79,17 @@ function! s:write_to_config(config) abort
   let dir = expand(fnamemodify(cf, ':p:h'))
   if !isdirectory(dir)
     call mkdir(dir, 'p')
+    let success = mkdir(dir, 'p', 0700)
+    if !success
+      call SpaceVim#logger#info('failed to create dir:' . dir)
+      return
+    endif
   endif
-  call writefile(a:config, cf, '')
+  let result = writefile(a:config, cf, '')
+  if result == -1
+    " failed to writefile
+    call SpaceVim#logger#info('failed to write config to file:' . cf)
+  endif
 endfunction
 
 
@@ -96,10 +105,23 @@ function! SpaceVim#custom#SPC(m, keys, cmd, desc, is_cmd) abort
 endfunction
 
 ""
-" Set the group name of custom key bindings.
+" Set the group name of custom SPC key bindings.
 function! SpaceVim#custom#SPCGroupName(keys, name) abort
   call add(g:_spacevim_mappings_space_custom_group_name, [a:keys, a:name])
 endfunction
+""
+" function for adding custom leader key bindings
+function! SpaceVim#custom#leader(type, key, value, ...) abort
+    call add(g:_spacevim_mappings_leader_custom,
+          \ [a:type, a:key, a:value] + a:000)
+endfunction
+
+""
+" Set the group name of custom Leader key bindings.
+function! SpaceVim#custom#LeaderGroupName(keys, name) abort
+  call add(g:_spacevim_mappings_leader_custom_group_name, [a:keys, a:name])
+endfunction
+
 
 ""
 " This function offers user a way to add custom language specific key
@@ -134,7 +156,7 @@ function! s:apply(config, type) abort
           call SpaceVim#logger#warn('defx requires +python3!', 0)
           continue
         endif
-      " keep backward compatibility
+        " keep backward compatibility
       elseif name ==# 'statusline_right_sections'
         let name = 'statusline_right'
       elseif name ==# 'statusline_right_sections'

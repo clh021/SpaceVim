@@ -1056,6 +1056,13 @@ let g:spacevim_github_username         = ''
 " Set the default key for smart close windows, default is `q`.
 let g:spacevim_windows_smartclose      = 'q'
 ""
+" @section disabled_plugins, options-disabled_plugins
+" @parentsection options
+" >
+"   disabled_plugins = ['vim-foo', 'vim-bar']
+" <
+
+""
 " Disable plugins by name.
 " >
 "   let g:spacevim_disabled_plugins = ['vim-foo', 'vim-bar']
@@ -1346,6 +1353,8 @@ let g:spacevim_wildignore
 let g:_spacevim_mappings = {}
 let g:_spacevim_mappings_space_custom = []
 let g:_spacevim_mappings_space_custom_group_name = []
+let g:_spacevim_mappings_leader_custom = []
+let g:_spacevim_mappings_leader_custom_group_name = []
 let g:_spacevim_mappings_language_specified_space_custom = {}
 let g:_spacevim_mappings_lang_group_name = {}
 let g:_spacevim_neobundle_installed     = 0
@@ -1597,16 +1606,19 @@ function! s:parser_argv() abort
     if index(v:argv, '--embed') !=# -1
           \ || len(v:argv) == 1
       return [0]
-    elseif v:argv[1] =~# '/$'
-      let f = fnamemodify(expand(v:argv[1]), ':p')
+    elseif index(v:argv, '-d') !=# -1
+      " this is  diff mode
+      return [2]
+    elseif v:argv[-1] =~# '/$'
+      let f = fnamemodify(expand(v:argv[-1]), ':p')
       if isdirectory(f)
         return [1, f]
       else
         return [1, getcwd()]
       endif
-    elseif v:argv[1] ==# '.'
+    elseif v:argv[-1] ==# '.'
       return [1, getcwd()]
-    elseif isdirectory(expand(v:argv[1]))
+    elseif isdirectory(expand(v:argv[-1]))
       return [1, fnamemodify(expand(v:argv[1]), ':p')]
     else
       return [2, get(v:, 'argv', ['failed to get v:argv'])]

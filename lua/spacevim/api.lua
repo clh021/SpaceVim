@@ -8,8 +8,18 @@
 
 local M = {}
 
+
+-- local logger = require('spacevim.logger')
+
 function M.import(name)
- return require('spacevim.api.' .. name)   
+    local p = 'spacevim.api.' .. name
+    local ok, rst = pcall(require, p)
+    if ok then
+        package.loaded[p] = nil
+        return rst
+    else
+        return nil
+    end
 end
 
 return M
