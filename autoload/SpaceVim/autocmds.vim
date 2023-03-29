@@ -1,6 +1,6 @@
 "=============================================================================
 " autocmd.vim --- main autocmd group for spacevim
-" Copyright (c) 2016-2022 Wang Shidong & Contributors
+" Copyright (c) 2016-2023 Wang Shidong & Contributors
 " Author: Shidong Wang < wsdjeg@outlook.com >
 " URL: https://spacevim.org
 " License: GPLv3
@@ -59,7 +59,7 @@ function! SpaceVim#autocmds#init() abort
     endif
     autocmd BufWritePre * call SpaceVim#plugins#mkdir#CreateCurrent()
     autocmd ColorScheme * call SpaceVim#api#import('vim#highlight').hide_in_normal('EndOfBuffer')
-    autocmd ColorScheme gruvbox,jellybeans,nord,srcery,NeoSolarized,one call s:fix_colorschem_in_SpaceVim()
+    autocmd ColorScheme gruvbox,jellybeans,nord,srcery,NeoSolarized,one,SpaceVim call s:fix_colorschem_in_SpaceVim()
     autocmd VimEnter * call SpaceVim#autocmds#VimEnter()
     autocmd BufEnter * let b:_spacevim_project_name = get(g:, '_spacevim_project_name', '')
     autocmd SessionLoadPost * let g:_spacevim_session_loaded = 1
@@ -123,6 +123,8 @@ function! s:fix_colorschem_in_SpaceVim() abort
       hi VertSplit guibg=#151515 guifg=#080808
     elseif g:colors_name ==# 'nord'
       hi VertSplit guibg=#2E3440 guifg=#262626
+    elseif g:colors_name ==# 'SpaceVim'
+      hi VertSplit guibg=#262626 guifg=#181A1F
     elseif g:colors_name ==# 'srcery'
       hi VertSplit guibg=#1C1B19 guifg=#262626
       hi clear Visual

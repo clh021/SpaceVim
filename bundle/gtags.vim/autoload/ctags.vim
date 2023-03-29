@@ -1,6 +1,6 @@
 "=============================================================================
 " ctags.vim --- ctags generator
-" Copyright (c) 2016-2022 Wang Shidong & Contributors
+" Copyright (c) 2016-2023 Wang Shidong & Contributors
 " Author: Wang Shidong < wsdjeg@outlook.com >
 " URL: https://spacevim.org
 " License: GPLv3
@@ -51,15 +51,17 @@ endfunction
 
 
 function! ctags#update(...) abort
+  let project_root = getcwd()
   if !s:version_checked
+    call s:LOGGER.info('start to check ctags version')
     call s:JOB.start([g:gtags_ctags_bin, '--version'], {
           \ 'on_stdout': function('s:version_std_out'),
           \ 'on_exit': function('s:version_exit'),
           \ })
     return
+  else
+    call s:LOGGER.info('update ctags database for ' . project_root)
   endif
-  let project_root = getcwd()
-  call s:LOGGER.info('update ctags database for ' . project_root)
   let dir = s:FILE.unify_path(g:tags_cache_dir) 
         \ . s:FILE.path_to_fname(project_root)
   let cmd = [g:gtags_ctags_bin]
@@ -72,7 +74,7 @@ function! ctags#update(...) abort
     endif
   endif
   if isdirectory(dir)
-    let cmd += ['-R', '-o', dir . '/tags', project_root]
+    let cmd += ['-R', '--extra=+f', '-o', dir . '/tags', project_root]
     call s:LOGGER.debug('ctags command:' . string(cmd))
     let jobid = s:JOB.start(cmd, {
           \ 'on_stdout' : function('s:on_update_stdout'),

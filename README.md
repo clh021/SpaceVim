@@ -8,7 +8,7 @@
 [Chat](https://chat.mozilla.org/#/room/#spacevim:matrix.org) \|
 [Twitter](https://twitter.com/SpaceVim)
 
-[![build](https://img.shields.io/github/workflow/status/SpaceVim/SpaceVim/test)](https://github.com/SpaceVim/SpaceVim/actions/workflows/check.yml?query=branch%3Amaster)
+[![build](https://img.shields.io/github/actions/workflow/status/SpaceVim/SpaceVim/check.yml?branch=master)](https://github.com/SpaceVim/SpaceVim/actions/workflows/check.yml?query=branch%3Amaster)
 [![Codecov coverage](https://img.shields.io/codecov/c/github/SpaceVim/SpaceVim.svg)](https://codecov.io/gh/SpaceVim/SpaceVim)
 [![Release](https://img.shields.io/badge/Release-2.0.0-8700FF.svg)](https://spacevim.org/SpaceVim-release-v2.0.0/)
 [![GPLv3 License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/SpaceVim/SpaceVim/blob/master/LICENSE)
@@ -22,7 +22,7 @@ The latest release [v2.0.0](https://spacevim.org/SpaceVim-release-v2.0.0/) was r
 
 - **Modularization:** plugins and functions are organized in [layers](https://spacevim.org/layers/).
 - **Compatible api:** a series of [compatible APIs](https://spacevim.org/api/) for Vim/Neovim.
-- **Great documentation:** online [documentation](spacevim.org/documentation/) and `:h SpaceVim`.
+- **Great documentation:** online [documentation](https://spacevim.org/documentation/) and `:h SpaceVim`.
 - **Better experience:** rewrite core plugins using lua
 - **Beautiful UI:** you'll love the awesome UI and its useful features.
 - **Mnemonic key bindings:** key binding guide will be displayed automatically
@@ -44,12 +44,12 @@ The latest release [v2.0.0](https://spacevim.org/SpaceVim-release-v2.0.0/) was r
 ├─ autoload/SpaceVim.vim          SpaceVim core file
 ├─ autoload/SpaceVim/api/         Public APIs
 ├─ autoload/SpaceVim/layers/      available layers
-├─ autoload/SpaceVim/plugins/     buildin plugins
+├─ autoload/SpaceVim/plugins/     builtin plugins
 ├─ autoload/SpaceVim/mapping/     mapping guide
 ├─ colors/                        default colorscheme
 ├─ docker/                        docker image generator
 ├─ bundle/                        bundle plugins
-├─ lua/spacevim/plugin            buildin plugins(lua)
+├─ lua/spacevim/plugin            builtin plugins(lua)
 ├─ doc/                           help(cn/en)
 ├─ docs/                          website(cn/en)
 ├─ wiki/                          wiki(cn/en)
